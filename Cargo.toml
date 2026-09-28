@@ -1,0 +1,32 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/exec-abi",
+    "crates/exec-hal",
+    "crates/exec-core",
+    "crates/exec",
+]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[workspace.dependencies]
+exec-abi = { path = "crates/exec-abi" }
+exec-hal = { path = "crates/exec-hal" }
+exec-core = { path = "crates/exec-core" }
+
+[profile.release]
+panic = "abort"
+lto = "fat"
+codegen-units = 1
+opt-level = "s"
+# Left on in release. Verus proves these cannot fire, so they cost nothing at
+# run time, and they are worth their size as a second opinion on the day a
+# proof turns out to be weaker than it looked.
+overflow-checks = true
+debug = true
+
+[profile.dev]
+panic = "abort"

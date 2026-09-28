@@ -1,0 +1,19 @@
+[package]
+name = "exec"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+# A binary target, not a library. This package has src/main.rs and no
+# src/lib.rs, so a [lib] section here makes cargo look for a file that does not
+# exist and leaves the crate graph unbuilt.
+[[bin]]
+name = "exec"
+path = "src/main.rs"
+test = false
+bench = false
+
+[dependencies]
+exec-abi = { workspace = true }
+exec-hal = { workspace = true }
+exec-core = { workspace = true }

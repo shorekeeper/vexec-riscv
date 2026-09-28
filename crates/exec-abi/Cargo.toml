@@ -1,0 +1,16 @@
+[package]
+name = "exec-abi"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+# The test and bench targets are removed rather than left unused. A harness
+# needs the test crate, which does not exist for a bare metal target, so cargo
+# and any analyser reading cargo metadata report a missing crate for a target
+# that could never be built. Verification is a separate pass over the sources.
+[lib]
+test = false
+bench = false
+doctest = false
+
+[dependencies]

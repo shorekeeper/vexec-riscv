@@ -1,0 +1,6 @@
+/target
+/tools
+/exec.bin
+*.log
+.verus-log/
+verus-revert.ps1

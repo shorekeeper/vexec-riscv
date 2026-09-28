@@ -1,0 +1,19 @@
+[package]
+name = "exec-core"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[lib]
+test = false
+bench = false
+doctest = false
+
+# Empty, and scripts/audit.ps1 fails if that stops being true.
+#
+# The verifier is not a dependency. It reads spec/, which cargo never sees;
+# scripts/spec-strip.ps1 turns those files into the plain Rust compiled here by
+# deleting ghost items and nothing else. The proof and the build share an
+# algorithm, not a build graph.
+[dependencies]
+exec-abi = { workspace = true }

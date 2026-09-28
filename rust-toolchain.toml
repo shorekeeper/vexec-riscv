@@ -1,0 +1,14 @@
+# Pinned to the rustc the Verus binary was linked against. Verus refuses a
+# mismatch, and a project that verifies on one compiler and ships on another
+# has verified a program it does not ship.
+#
+# A directory local override. The machine default is untouched: cargo outside
+# this tree still uses whatever it used before.
+#
+# One target. riscv64imac, soft float, lp64. Sedna turns floating point into
+# software regardless, so a kernel that touches it pays twice, and its absence
+# takes IEEE semantics out of everything that has to be proved.
+
+[toolchain]
+channel = "1.97.1"
+targets = ["riscv64imac-unknown-none-elf"]
